@@ -51,13 +51,13 @@ build:
             - $BUILD_DISABLED == "true"
 
 unit tests:
-    image: jakzal/phpqa
+    image: $CI_REGISTRY_IMAGE/php:$CI_COMMIT_REF_NAME
     stage: test
     script:
-        - launch_phpqa_phpunit
+        - launch_phpunit
     artifacts:
         reports:
-            junit: api/phpunit-junit.xml
+            junit: api/build/logs/phpunit/junit.xml
 
 behat tests:
     stage: test
@@ -77,6 +77,9 @@ behat tests:
     dependencies: []
     only:
         - branches
+    artifacts:
+        reports:
+            junit: api/build/logs/behat/junit.xml
 
 review:
     stage: review

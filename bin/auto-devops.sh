@@ -149,10 +149,12 @@ build() {
   docker push $NGINX_REPOSITORY:$TAG
 }
 
-function launch_phpqa_phpunit() {
-  cd ./api
+function launch_phpunit() {
+  echo "launch_phpunit function"
+  cd ./api || return
+  mkdir -p build/logs/phpunit/
   composer install -o --prefer-dist --no-scripts --ignore-platform-reqs
-  phpunit --log-junit phpunit-junit.xml
+  vendor/bin/simple-phpunit tests/Unit --log-junit build/logs/phpunit/junit.xml
 }
 
 function setup_test_db() {
@@ -167,8 +169,9 @@ function setup_test_db() {
 function run_tests() {
   echo "run_tests function"
   cd ./api || return
-  composer install -o --dev --prefer-dist --no-scripts --ignore-platform-reqs
-  bin/console doctrine:query:sql "SELECT * FROM User"
+  mkdir -p build/logs/junit/
+  composer install -o --prefer-dist --no-scripts --ignore-platform-reqs
+  vendor/bin/behat --format=progress --out=std --format=junit --out=build/logs/behat/junit --profile=default --no-interaction --colors --tags='~@wip'
 
 #  docker pull $PHP_REPOSITORY:$TAG
 #
