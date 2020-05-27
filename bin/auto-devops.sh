@@ -165,13 +165,9 @@ function setup_test_db() {
 }
 
 run_tests() {
-	echo "run_tests function disabled - needs refactoring/checking"
-
-  if [ -n "$CI_REGISTRY_USER" ]; then
-    echo "Logging to GitLab Container Registry with CI credentials..."
-    docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
-    echo ""
-  fi
+	echo "run_tests function"
+  cd ./api || return
+  bin/console doctrine:query:sql "SELECT * FROM User"
 
 #  docker pull $PHP_REPOSITORY:$TAG
 #

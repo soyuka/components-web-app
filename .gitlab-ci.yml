@@ -59,28 +59,24 @@ phpunit:
         reports:
             junit: api/phpunit-junit.xml
 
-#behat:
-#    stage: test
-#    image: docker:stable
-#    variables:
-#        DOCKER_DRIVER: overlay2
-#        DOCKER_TLS_CERTDIR: ""
-#        COMPOSER_PACKAGIST_TOKEN: 1548c14cbc7ef945787cad19913d10ef73068d7cdc61ff19513bfb4f72ea
-#        POSTGRES_USER: runner
-#        POSTGRES_PASSWORD: "password"
-#        POSTGRES_DB: test
-#        POSTGRES_HOST_AUTH_METHOD: trust
-#    allow_failure: false
-#    services:
-#        - docker:stable-dind
-#        - postgres:latest
-#    script:
-#        - setup_test_db
-#        - setup_docker
-#        - behat_tests
-#    dependencies: []
-#    only:
-#        - branches
+behat:
+    stage: test
+    image: $CI_REGISTRY_IMAGE/nginx:$CI_COMMIT_REF_NAME
+    variables:
+        COMPOSER_PACKAGIST_TOKEN: 1548c14cbc7ef945787cad19913d10ef73068d7cdc61ff19513bfb4f72ea
+        POSTGRES_USER: runner
+        POSTGRES_PASSWORD: "password"
+        POSTGRES_DB: test
+        POSTGRES_HOST_AUTH_METHOD: trust
+    allow_failure: false
+    services:
+        - postgres:latest
+    script:
+        - setup_test_db
+        - behat_tests
+    dependencies: []
+    only:
+        - branches
 
 review:
     stage: review
