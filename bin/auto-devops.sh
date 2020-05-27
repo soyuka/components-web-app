@@ -169,7 +169,7 @@ function setup_test_db() {
 function run_tests() {
   echo "run_tests function"
   cd ./api || return
-  mkdir -p build/logs/junit/
+  mkdir -p build/logs/behat/
   composer install -o --prefer-dist --no-scripts --ignore-platform-reqs
   vendor/bin/behat --format=progress --out=std --format=junit --out=build/logs/behat/junit --profile=default --no-interaction --colors --tags='~@wip'
 
