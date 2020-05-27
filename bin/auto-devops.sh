@@ -350,7 +350,7 @@ function delete() {
 	helm uninstall "$name" || EXIT_CODE=$? && true
   echo ${EXIT_CODE}
 
-	if [[ $CI_ENVIRONMENT_SLUG == review* ]]; then
+	if [[ $CI_ENVIRONMENT_SLUG = review* ]]; then
 	  echo "Deleting namespace $KUBE_NAMESPACE"
 		kubectl delete namespace $KUBE_NAMESPACE --grace-period=0
 	else
