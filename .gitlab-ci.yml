@@ -58,6 +58,9 @@ unit tests:
     artifacts:
         reports:
             junit: api/build/logs/phpunit/junit.xml
+    except:
+        variables:
+            - $TEST_DISABLED == "true"
 
 behat tests:
     stage: test
@@ -80,6 +83,9 @@ behat tests:
     artifacts:
         reports:
             junit: api/build/logs/behat/junit.xml
+    except:
+        variables:
+            - $TEST_DISABLED == "true"
 
 review:
     stage: review
