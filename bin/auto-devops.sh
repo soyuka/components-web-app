@@ -354,6 +354,6 @@ function delete() {
 	  echo "Deleting namespace $KUBE_NAMESPACE"
 		kubectl delete namespace $KUBE_NAMESPACE --grace-period=0
 	else
-	  echo "Skipping namespace delete for $KUBE_NAMESPACE"
+	  echo "Skipping namespace delete for slug $CI_ENVIRONMENT_SLUG and namespace $KUBE_NAMESPACE"
 	fi
 }
