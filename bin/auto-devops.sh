@@ -167,6 +167,7 @@ function setup_test_db() {
 function run_tests() {
   echo "run_tests function"
   cd ./api || return
+  composer install -o --dev --prefer-dist --no-scripts --ignore-platform-reqs
   bin/console doctrine:query:sql "SELECT * FROM User"
 
 #  docker pull $PHP_REPOSITORY:$TAG
