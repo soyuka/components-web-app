@@ -351,6 +351,9 @@ function delete() {
   echo ${EXIT_CODE}
 
 	if [[ $CI_ENVIRONMENT_SLUG == review* ]]; then
-		kubectl delete namespace $CI_ENVIRONMENT_SLUG --grace-period=0
+	  echo "Deleting namespace $KUBE_NAMESPACE"
+		kubectl delete namespace $KUBE_NAMESPACE --grace-period=0
+	else
+	  echo "Skipping namespace delete for $KUBE_NAMESPACE"
 	fi
 }
