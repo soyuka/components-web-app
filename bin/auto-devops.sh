@@ -149,6 +149,12 @@ build() {
   docker push $NGINX_REPOSITORY:$TAG
 }
 
+function launch_phpqa_phpunit() {
+  cd ./api
+  composer install -o --prefer-dist --no-scripts --ignore-platform-reqs
+  phpunit --log-junit phpunit-junit.xml
+}
+
 function setup_test_db() {
   if [ -z ${KUBERNETES_PORT+x} ]; then
     DB_HOST=postgres

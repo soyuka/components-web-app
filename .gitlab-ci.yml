@@ -50,6 +50,15 @@ build:
         variables:
             - $BUILD_DISABLED == "true"
 
+phpunit:
+    image: jakzal/phpqa
+    stage: test
+    script:
+        - launch_phpqa_phpunit
+    artifacts:
+        reports:
+            junit: api/phpunit-junit.xml
+
 #behat:
 #    stage: test
 #    image: docker:stable
