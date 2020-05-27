@@ -350,5 +350,7 @@ function delete() {
 	helm uninstall "$name" || EXIT_CODE=$? && true
   echo ${EXIT_CODE}
 
-  # should we have a script to remove/clean unused namespaces - must be careful not to delete production!
+	if [[ $CI_ENVIRONMENT_SLUG == review* ]]; then
+		kubectl delete namespace $CI_ENVIRONMENT_SLUG --grace-period=0
+	fi
 }
