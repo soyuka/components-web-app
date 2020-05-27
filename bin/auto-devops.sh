@@ -164,8 +164,8 @@ function setup_test_db() {
   export DATABASE_URL="pgsql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_HOST}:5432/${POSTGRES_DB}"
 }
 
-run_tests() {
-	echo "run_tests function"
+function run_tests() {
+  echo "run_tests function"
   cd ./api || return
   bin/console doctrine:query:sql "SELECT * FROM User"
 
