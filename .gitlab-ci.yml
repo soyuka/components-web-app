@@ -50,7 +50,7 @@ build:
         variables:
             - $BUILD_DISABLED == "true"
 
-phpunit:
+unit tests:
     image: jakzal/phpqa
     stage: test
     script:
@@ -59,7 +59,7 @@ phpunit:
         reports:
             junit: api/phpunit-junit.xml
 
-behat:
+behat tests:
     stage: test
     image: $CI_REGISTRY_IMAGE/nginx:$CI_COMMIT_REF_NAME
     variables:
@@ -73,7 +73,7 @@ behat:
         - postgres:latest
     script:
         - setup_test_db
-        - behat_tests
+        - run_tests
     dependencies: []
     only:
         - branches
