@@ -1,8 +1,8 @@
 {
   "projectName": "components-web-app",
-  "projectOwner": "components-web-app",
-  "repoType": "github",
-  "repoHost": "https://github.com",
+  "projectOwner": "silverback-web-apps/cwa",
+  "repoType": "gitlab",
+  "repoHost": "https://gitlab.com",
   "files": [
     "README.md"
   ],
@@ -13,8 +13,8 @@
     {
       "login": "pborreli",
       "name": "Pascal Borreli",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/77759?v=4",
-      "profile": "http://twitter.com/pborreli",
+      "avatar_url": "https://secure.gravatar.com/avatar/5c299a02c11ce797f20df385f560a16a?s=80&d=identicon",
+      "profile": "https://gitlab.com/pborreli",
       "contributions": [
         "ideas",
         "infra"
