@@ -70,13 +70,15 @@ abstract class AbstractPageFixture extends Fixture
         return $componentCollection;
     }
 
-    protected function createComponentPosition(ComponentCollection $componentCollection, AbstractComponent $component, ?int $sortValue = null): ComponentPosition
+    protected function createComponentPosition(ComponentCollection $componentCollection, ?AbstractComponent $component, ?int $sortValue = null): ComponentPosition
     {
         $position = new ComponentPosition();
         $position
-            ->setComponent($component)
             ->setComponentCollection($componentCollection)
             ->setSortValue($sortValue);
+        if ($component) {
+            $position->setComponent($component);
+        }
         $this->timestampedDataPersister->persistTimestampedFields($position, true);
         return $position;
     }
