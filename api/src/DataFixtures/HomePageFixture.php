@@ -22,12 +22,12 @@ class HomePageFixture extends AbstractPageFixture
         $page = $this->createPage('home', 'PrimaryPageTemplate', $layout);
         $manager->persist($page);
 
-        $componentCollection = $this->createComponentCollection($page, 'primary');
-        $manager->persist($componentCollection);
-
         $htmlContent = new HtmlContent();
         $htmlContent->html = '<p>Bonjour mon ami</p>';
         $manager->persist($htmlContent);
+
+        $componentCollection = $this->createComponentCollection($page, 'primary');
+        $manager->persist($componentCollection);
 
         $position = $this->createComponentPosition($componentCollection, $htmlContent, 0);
         $manager->persist($position);
